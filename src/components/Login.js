@@ -19,7 +19,7 @@ function Login() {
 export default Login
 
 const Container = styled.main`
-    min-height: calc(100vh - 70px);
+    min-height: 100vh;
     position: relative;
     display: flex;
     align-items: center;

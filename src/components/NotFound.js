@@ -15,7 +15,7 @@ function NotFound() {
 export default NotFound
 
 const Container = styled.main`
-    min-height: calc(100vh - 70px);
+    min-height: 100vh;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -23,7 +23,10 @@ const Container = styled.main`
     justify-content: center;
 
     &:before {
-        background: url('/images/login-background.jpg') center center / cover no-repeat fixed;
+        background: linear-gradient(
+            rgba(150, 150, 150, 0.45), 
+            rgba(150, 150, 150, 0.45)
+          ),url('/images/login-background.jpg') center center / cover no-repeat fixed;
         content: "";
         position: absolute;
         top: 0;

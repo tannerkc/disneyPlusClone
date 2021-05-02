@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components'
 
 function Header() {
+    let [bgColor, setBg] = useState("transparent");
+    let scrollpos = window.scrollY
+  
+    window.addEventListener('scroll', function() { 
+      scrollpos = window.scrollY;
+  
+      if (scrollpos >= 20) { setBg("#090b13") }
+      else { setBg("transparent") }
+
+      console.log(bgColor)
+    })
+
     return (
-        <Nav>
+        <Nav style={{background: bgColor}}>
             <Logo src="/images/logo.svg" />
             <NavMenu>
                 <a href="/">
@@ -40,11 +52,17 @@ export default Header
 
 const Nav = styled.nav`
     height: 70px;
-    background: #090b13;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
     display: flex;
     align-items: center;
     padding: 0 36px;
     overflow-x: hidden;
+    z-index: 999;
+
+    transition: all 250ms cubic-bezier(.25, .46, .45, .94) 0s;
 `
 
 const Logo = styled.img`

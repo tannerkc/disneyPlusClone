@@ -1,3 +1,10 @@
 *{
     box-sizing: border-box;
-  }
+}
+.App::-webkit-scrollbar {
+  display: none;
+}
+
+.App{
+  overflow: hidden;
+}
