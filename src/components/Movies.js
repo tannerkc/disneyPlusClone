@@ -1,11 +1,35 @@
 import React from 'react'
+import Slider from 'react-slick'
 import styled from 'styled-components'
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 function Movies() {
+
+    let slidesValue = 4;
+
+    window.onresize = displayWindowSize;
+    window.onload = displayWindowSize;
+    function displayWindowSize() {
+        // your size calculation code here
+        console.log(window.innerWidth)
+        if(window.innerWidth < 1050){
+            slidesValue = 3
+        }
+    };
+
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: slidesValue,
+        slidesToScroll: 3
+      };
+
     return (
         <Container>
             <h3>Recommended for You</h3>
-            <Content>
+            {/* <Content>
                 <Wrap>
                     <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/6EA416AD3B15FCC1BADC817A932A57FFF707556DB2233FFCB4CFEB7C8EEDE23C/scale?width=400&aspectRatio=1.78&format=jpeg" alt=""/>
                 </Wrap>
@@ -15,7 +39,27 @@ function Movies() {
                 <Wrap>
                     <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/6EA416AD3B15FCC1BADC817A932A57FFF707556DB2233FFCB4CFEB7C8EEDE23C/scale?width=400&aspectRatio=1.78&format=jpeg" alt=""/>
                 </Wrap>
-            </Content>
+            </Content> */}
+            <Carousel {...settings}>
+                <Wrap>
+                    <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/6EA416AD3B15FCC1BADC817A932A57FFF707556DB2233FFCB4CFEB7C8EEDE23C/scale?width=400&aspectRatio=1.78&format=jpeg" alt=""/>
+                </Wrap>
+                <Wrap>
+                    <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/6EA416AD3B15FCC1BADC817A932A57FFF707556DB2233FFCB4CFEB7C8EEDE23C/scale?width=400&aspectRatio=1.78&format=jpeg" alt=""/>
+                </Wrap>
+                <Wrap>
+                    <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/6EA416AD3B15FCC1BADC817A932A57FFF707556DB2233FFCB4CFEB7C8EEDE23C/scale?width=400&aspectRatio=1.78&format=jpeg" alt=""/>
+                </Wrap>
+                <Wrap>
+                    <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/6EA416AD3B15FCC1BADC817A932A57FFF707556DB2233FFCB4CFEB7C8EEDE23C/scale?width=400&aspectRatio=1.78&format=jpeg" alt=""/>
+                </Wrap>
+                <Wrap>
+                    <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/6EA416AD3B15FCC1BADC817A932A57FFF707556DB2233FFCB4CFEB7C8EEDE23C/scale?width=400&aspectRatio=1.78&format=jpeg" alt=""/>
+                </Wrap>
+                <Wrap>
+                    <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/6EA416AD3B15FCC1BADC817A932A57FFF707556DB2233FFCB4CFEB7C8EEDE23C/scale?width=400&aspectRatio=1.78&format=jpeg" alt=""/>
+                </Wrap>
+            </Carousel>
         </Container>
     )
 }
@@ -30,6 +74,52 @@ const Content = styled.div`
     grid-gap: 25px;
     grid-template-columns: repeat(3, minmax(0,1fr));
     margin-top: 20px;
+`
+const Carousel = styled(Slider)`
+    margin-top:20px;
+    position: relative;
+    
+
+    ul li button{
+        &:before{
+            font-size: 10px;
+            color: rgb(150, 158, 171);
+        }
+    }
+
+    li.slick-active button:before{
+        color: white;
+    }
+
+    .slick-list{
+        overflow: visible;
+        left: -10px;
+    }
+
+    .slick-slide{
+        div{
+            margin: 0 10px;
+        }
+    }
+
+    .slick-arrow{
+        height: 100%;
+        background: rgba(0, 0, 0, .5);
+        position: absolute;
+    }
+    
+    button.slick-arrow.slick-prev {
+        width: 4.5%;
+        left: -5%;
+    }
+    button.slick-arrow.slick-next {
+        width: 4.5%;
+        right: -5%;
+    }
+
+    button{
+        z-index: 1;
+    }
 `
 
 const Wrap = styled.div`
