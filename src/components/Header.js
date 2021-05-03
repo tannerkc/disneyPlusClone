@@ -185,8 +185,8 @@ const UserContainer = styled.div`
 `
 
 const UserImage = styled.img`
-    width: 48px;
-    height: 48px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     cursor: pointer;
     border: 1px solid transparent;
