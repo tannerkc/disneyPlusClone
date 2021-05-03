@@ -15,10 +15,14 @@ function Detail() {
                 setMovie(doc.data());
             }
             else{
-
+                // redirect to 404 or back to home
             }
+
+            console.log(doc.data())
         })
-    }, [])
+    }, [id])
+
+
 
     return (
         <Container>
