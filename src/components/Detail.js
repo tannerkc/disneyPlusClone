@@ -1,7 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useParams } from 'react-router-dom'
 
 function Detail() {
+    const {id} = useParams();
     return (
         <Container>
             <Background>
@@ -64,9 +66,9 @@ const Background = styled.div`
 const ImageTitle = styled.div`
     height: 30vh;
     min-height: 170px;
-    width: 35vw;
     min-width: 200px;
-    margin-top: 90px;
+    max-width: 600px;
+    margin-top: 30vh;
 
     img{
         width: 100%;
