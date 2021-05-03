@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory} from 'react-router-dom'
+
 import db from '../firebase'
 
 function Detail() {
     const {id} = useParams();
     const [movie, setMovie] = useState()
+
+    const history = useHistory();
 
     useEffect(() => {
         db.collection('movies').doc(id)
@@ -15,7 +18,7 @@ function Detail() {
                 setMovie(doc.data());
             }
             else{
-                // redirect to 404 or back to home
+                history.push('/404')
             }
 
             console.log(doc.data())

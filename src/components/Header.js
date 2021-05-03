@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import {useHistory} from 'react-router-dom'
 import {
@@ -39,6 +39,7 @@ function Header() {
                 email: user.email,
                 photo: user.photoURL,
             }))
+            history.push('/')
         })
     }
 
@@ -50,7 +51,17 @@ function Header() {
     }
 
 
-
+    useEffect(() => {
+        auth.onAuthStateChanged(async (user)=>{
+            if(user){
+                dispatch(setUserLogin({
+                    name: user.displayName,
+                    email: user.email,
+                    photo: user.photoURL,
+                }))
+            }
+        })
+    }, [])
 
     return (
         <Nav style={{background: bgColor}}>
@@ -89,7 +100,7 @@ function Header() {
                     </a>
                 </NavMenu>
                 <UserContainer>
-                    <UserImage onClick={signOut} src="/images/1.png" />
+                    <UserImage onClick={signOut} src={userPhoto} />
                 </UserContainer>
                 </>
             }
