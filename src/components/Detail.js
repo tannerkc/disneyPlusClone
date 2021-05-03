@@ -1,41 +1,61 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useParams } from 'react-router-dom'
+import db from '../firebase'
 
 function Detail() {
     const {id} = useParams();
+    const [movie, setMovie] = useState()
+
+    useEffect(() => {
+        db.collection('movies').doc(id)
+        .get()
+        .then((doc) =>{
+            if(doc.exists){
+                setMovie(doc.data());
+            }
+            else{
+
+            }
+        })
+    }, [])
+
     return (
         <Container>
-            <Background>
-                <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/4F39B7E16726ECF419DD7C49E011DD95099AA20A962B0B10AA1881A70661CE45/scale?width=1440&aspectRatio=1.78&format=jpeg
-" alt=""/>
-            </Background>
-            <ImageTitle>
-                <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/D7AEE1F05D10FC37C873176AAA26F777FC1B71E7A6563F36C6B1B497CAB1CEC2/scale?width=1440&aspectRatio=1.78
-" alt=""/>
-            </ImageTitle>
-            <Controls>
-                <PlayButton>
-                    <img src="/images/play-icon-black.png" alt=""/>
-                    <span>PLAY</span>
-                </PlayButton>
-                <TrailerButton>
-                    <img src="/images/play-icon-white.png" alt=""/>
-                    <span>Trailer</span>
-                </TrailerButton>
-                <AddButton>
-                    <span>+</span>
-                </AddButton>
-                <GroupWatchButton>
-                    <img src="/images/group-icon.png" alt=""/>
-                </GroupWatchButton>
-            </Controls>
-            <SubTitle>
-                2016 • 1h 47m • Family, Fantasy, Animation, Action-Adventure, Musical
-            </SubTitle>
-            <Description>
-                Moana sets sail on a daring mission to save her people. Along the way, she meets the mighty demigod Maui–together they cross the ocean on a fun-filled, action-packed voyage from Walt Disney Animation Studios.
-            </Description>
+            {
+                movie && 
+                <>
+                    <Background>
+                        <img src={movie.backgroundImg} alt=""/>
+                        <span></span>
+                    </Background>
+                    <ImageTitle>
+                        <img src={movie.titleImg} alt=""/>
+                    </ImageTitle>
+                    <Controls>
+                        <PlayButton>
+                            <img src="/images/play-icon-black.png" alt=""/>
+                            <span>PLAY</span>
+                        </PlayButton>
+                        <TrailerButton>
+                            <img src="/images/play-icon-white.png" alt=""/>
+                            <span>Trailer</span>
+                        </TrailerButton>
+                        <AddButton>
+                            <span>+</span>
+                        </AddButton>
+                        <GroupWatchButton>
+                            <img src="/images/group-icon.png" alt=""/>
+                        </GroupWatchButton>
+                    </Controls>
+                    <SubTitle>
+                        {movie.subtitle}
+                    </SubTitle>
+                    <Description>
+                        {movie.description}
+                    </Description>
+                </>
+            }
         </Container>
     )
 }
@@ -56,6 +76,16 @@ const Background = styled.div`
     z-index: -1;
     opacity: 0.8;
 
+    span{
+        background: linear-gradient(45deg, rgba(27, 30, 42, 1) 20%, rgba(27, 30, 42, .9) 35%, rgba(0,0,0,0) 70%);
+        background: radial-gradient(circle, rgba(26,29,41,0) 30%, rgba(26,29,41,.6) 50%, rgba(26,29,41,1) 80%);
+        position: fixed;
+        top: -45vh;
+        right: -45vw;
+        width: 150vw;
+        height: 150vh;
+    }
+
     img{
         width: 100%;
         height: 100%;
@@ -69,6 +99,7 @@ const ImageTitle = styled.div`
     min-width: 200px;
     max-width: 600px;
     margin-top: 30vh;
+    margin-bottom: 70px;
 
     img{
         width: 100%;
