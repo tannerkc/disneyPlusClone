@@ -60,19 +60,19 @@ function Header() {
                     photo: user.photoURL,
                 }))
             }
-            else{ history.push('/login') }
+            // else{ history.push('/login') }
         })
     }, [])
 
     return (
         <Nav style={{background: bgColor}}>
             <Logo src="/images/logo.svg" />
-            {
+            {/* {
                 !userName ?
                 <LoginContainer>
                     <Login onClick={signIn}>Login</Login> 
                 </LoginContainer>
-                :
+                : */}
                 <>
                 <NavMenu>
                     <a href="/">
@@ -101,10 +101,11 @@ function Header() {
                     </a>
                 </NavMenu>
                 <UserContainer>
-                    <UserImage onClick={signOut} src={userPhoto} />
+                    {/* <UserImage onClick={signOut} src={userPhoto} /> */}
+                    <UserImage onClick={signOut} src='/images/1.png' />
                 </UserContainer>
                 </>
-            }
+            {/* } */}
         </Nav>
     )
 }
