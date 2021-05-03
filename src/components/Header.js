@@ -60,6 +60,7 @@ function Header() {
                     photo: user.photoURL,
                 }))
             }
+            else{ history.push('/login') }
         })
     }, [])
 
